@@ -1,0 +1,120 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 900px;
+            height: 900px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": "Reference Plane", "id": "Reference Plane 264867", "label": "Reference Plane 264867", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040aa3"}, {"group": "Extrusion", "id": "Extrusion 264984", "label": "Extrusion 264984", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b18"}, {"group": "Extrusion", "id": "Extrusion 264947", "label": "Extrusion 264947", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040af3"}, {"group": "Extrusion", "id": "Extrusion 265103", "label": "Extrusion 265103", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b8f"}, {"group": "Extrusion", "id": "Extrusion 265016", "label": "Extrusion 265016", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b38"}, {"group": "Extrusion", "id": "Extrusion 264879", "label": "Extrusion 264879", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040aaf"}, {"group": "Reference Plane", "id": "Reference Plane 264870", "label": "Reference Plane 264870", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040aa6"}, {"group": "Extrusion", "id": "Extrusion 264959", "label": "Extrusion 264959", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040aff"}, {"group": "Reference Plane", "id": "Reference Plane 264854", "label": "Reference Plane 264854", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040a96"}, {"group": "Reference Plane", "id": "Reference Plane 264855", "label": "Reference Plane 264855", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040a97"}, {"group": "Reference Plane", "id": "Reference Plane 264866", "label": "Reference Plane 264866", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040aa2"}, {"group": "Reference Plane", "id": "Reference Plane 264873", "label": "Reference Plane 264873", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040aa9"}, {"group": "Reference Plane", "id": "Reference Plane 264858", "label": "Reference Plane 264858", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040a9a"}, {"group": "Reference Plane", "id": "Reference Plane 264916", "label": "Reference Plane 264916", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ad4"}, {"group": "Reference Plane", "id": "Reference Plane 264973", "label": "Reference Plane 264973", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b0d"}, {"group": "Extrusion", "id": "Extrusion 264997", "label": "Extrusion 264997", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b25"}, {"group": "Extrusion", "id": "Extrusion 264930", "label": "Extrusion 264930", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ae2"}, {"group": "Extrusion", "id": "Extrusion 265094", "label": "Extrusion 265094", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b86"}, {"group": "FamilyInstance", "id": "FamilyInstance 311158", "label": "FamilyInstance 311158", "shape": "dot", "size": 10, "uid": "4056612d-8e76-4b70-9c11-8ec52a1b515c-0004bf76"}, {"group": "Reference Plane", "id": "Reference Plane 265038", "label": "Reference Plane 265038", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b4e"}, {"group": "Reference Plane", "id": "Reference Plane 264859", "label": "Reference Plane 264859", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040a9b"}, {"group": "Extrusion", "id": "Extrusion 265049", "label": "Extrusion 265049", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b59"}, {"group": "Reference Plane", "id": "Reference Plane 265008", "label": "Reference Plane 265008", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b30"}, {"group": "Reference Plane", "id": "Reference Plane 265009", "label": "Reference Plane 265009", "shape": "dot", "size": 10, "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b31"}]);
+        edges = new vis.DataSet([{"color": "black", "from": "Reference Plane 264867", "group": "ModelLine", "label": 1, "title": "ModelLine 264985", "to": "Extrusion 264984", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b19", "weight": 1}, {"color": "black", "from": "Reference Plane 264867", "group": "ModelLine", "label": 1, "title": "ModelLine 264949", "to": "Extrusion 264947", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040af5", "weight": 1}, {"color": "black", "from": "Reference Plane 264867", "group": "Default linear style", "label": 1, "title": "Default linear style 286710", "to": "Extrusion 265103", "uid": "99269a9c-ed56-4ed0-b532-36802fb4ea6c-00045ff6", "weight": 1}, {"color": "black", "from": "Reference Plane 264867", "group": "ModelLine", "label": 1, "title": "ModelLine 265022", "to": "Extrusion 265016", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b3e", "weight": 1}, {"color": "black", "from": "Reference Plane 264867", "group": "ModelLine", "label": 1, "title": "ModelLine 264883", "to": "Extrusion 264879", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ab3", "weight": 1}, {"color": "black", "from": "Extrusion 264984", "group": "ModelLine", "label": 1, "title": "ModelLine 264986", "to": "Reference Plane 264870", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b1a", "weight": 1}, {"color": "black", "from": "Extrusion 264984", "group": "ModelLine", "label": 1, "title": "ModelLine 265044", "to": "Extrusion 264879", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b54", "weight": 1}, {"color": "black", "from": "Reference Plane 264870", "group": "ModelLine", "label": 1, "title": "ModelLine 264950", "to": "Extrusion 264947", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040af6", "weight": 1}, {"color": "black", "from": "Reference Plane 264870", "group": "ModelLine", "label": 1, "title": "ModelLine 264960", "to": "Extrusion 264959", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b00", "weight": 1}, {"color": "black", "from": "Reference Plane 264870", "group": "ModelLine", "label": 1, "title": "ModelLine 265023", "to": "Extrusion 265016", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b3f", "weight": 1}, {"color": "black", "from": "Extrusion 264879", "group": "ModelLine", "label": 1, "title": "ModelLine 264881", "to": "Reference Plane 264854", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ab1", "weight": 1}, {"color": "black", "from": "Extrusion 264879", "group": "ModelLine", "label": 1, "title": "ModelLine 264889", "to": "Reference Plane 264855", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ab9", "weight": 1}, {"color": "black", "from": "Extrusion 264879", "group": "ModelLine", "label": 1, "title": "ModelLine 264891", "to": "Reference Plane 264866", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040abb", "weight": 1}, {"color": "black", "from": "Extrusion 264879", "group": "ModelLine", "label": 1, "title": "ModelLine 264880", "to": "Reference Plane 264873", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ab0", "weight": 1}, {"color": "black", "from": "Extrusion 264879", "group": "Alignment", "label": 1, "title": "Alignment 265152", "to": "Extrusion 264947", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040bc0", "weight": 1}, {"color": "black", "from": "Extrusion 264879", "group": "Alignment", "label": 1, "title": "Alignment 286726", "to": "Extrusion 265103", "uid": "99269a9c-ed56-4ed0-b532-36802fb4ea6c-00046006", "weight": 1}, {"color": "black", "from": "Reference Plane 264858", "group": "ModelLine", "label": 1, "title": "ModelLine 264948", "to": "Extrusion 264947", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040af4", "weight": 1}, {"color": "black", "from": "Extrusion 264947", "group": "ModelLine", "label": 1, "title": "ModelLine 264951", "to": "Reference Plane 264866", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040af7", "weight": 1}, {"color": "black", "from": "Reference Plane 264866", "group": "ModelLine", "label": 1, "title": "ModelLine 264963", "to": "Extrusion 264959", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b03", "weight": 1}, {"color": "black", "from": "Extrusion 264959", "group": "ModelLine", "label": 1, "title": "ModelLine 264962", "to": "Reference Plane 264916", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b02", "weight": 1}, {"color": "black", "from": "Extrusion 264959", "group": "Alignment", "label": 1, "title": "Alignment 264972", "to": "Reference Plane 264873", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b0c", "weight": 1}, {"color": "black", "from": "Extrusion 264959", "group": "Alignment", "label": 1, "title": "Alignment 264977", "to": "Reference Plane 264973", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b11", "weight": 1}, {"color": "black", "from": "Extrusion 264959", "group": "Alignment", "label": 1, "title": "Alignment 306488", "to": "Extrusion 264997", "uid": "bc2e7bf8-3977-43f1-b7b1-8c0d70c5aff8-0004ad38", "weight": 1}, {"color": "black", "from": "Reference Plane 264916", "group": "ModelLine", "label": 1, "title": "ModelLine 264935", "to": "Extrusion 264930", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ae7", "weight": 1}, {"color": "black", "from": "Extrusion 265103", "group": "ModelLine", "label": 1, "title": "ModelLine 265104", "to": "Extrusion 265094", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b90", "weight": 1}, {"color": "black", "from": "Reference Plane 264873", "group": "Default linear style", "label": 1, "title": "Default linear style 311286", "to": "FamilyInstance 311158", "uid": "4056612d-8e76-4b70-9c11-8ec52a1b515c-0004bff6", "weight": 1}, {"color": "black", "from": "Reference Plane 264873", "group": "ModelLine", "label": 1, "title": "ModelLine 264932", "to": "Extrusion 264930", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ae4", "weight": 1}, {"color": "black", "from": "Reference Plane 264873", "group": "Default linear style", "label": 1, "title": "Default linear style 265043", "to": "Reference Plane 265038", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b53", "weight": 1}, {"color": "black", "from": "Reference Plane 264859", "group": "ModelLine", "label": 1, "title": "ModelLine 264931", "to": "Extrusion 264930", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040ae3", "weight": 1}, {"color": "black", "from": "Extrusion 265016", "group": "ModelLine", "label": 1, "title": "ModelLine 265050", "to": "Extrusion 265049", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b5a", "weight": 1}, {"color": "black", "from": "Reference Plane 265008", "group": "Default linear style \r\nLabel : Glass Thickness", "label": 1, "title": "Default linear style \r\nLabel : Glass Thickness 265011", "to": "Reference Plane 265009", "uid": "37f02f14-ca7c-4aba-8cf9-68a3065f3cee-00040b33", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

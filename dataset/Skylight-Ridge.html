@@ -1,0 +1,120 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 900px;
+            height: 900px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": "Reference Plane", "id": "Reference Plane 2989", "label": "Reference Plane 2989", "shape": "dot", "size": 10, "uid": "7d344b56-10f6-4313-9ccd-58a27cd974a6-00000bad"}, {"group": "Sweep", "id": "Sweep 8679", "label": "Sweep 8679", "shape": "dot", "size": 10, "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-000021e7"}, {"group": "Sweep", "id": "Sweep 3559", "label": "Sweep 3559", "shape": "dot", "size": 10, "uid": "7d344b56-10f6-4313-9ccd-58a27cd974a6-00000de7"}, {"group": "Reference Plane", "id": "Reference Plane 6421", "label": "Reference Plane 6421", "shape": "dot", "size": 10, "uid": "77cd5899-0e3e-4630-84ba-e10878791747-00001915"}, {"group": "Reference Plane", "id": "Reference Plane 8403", "label": "Reference Plane 8403", "shape": "dot", "size": 10, "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-000020d3"}, {"group": "Extrusion", "id": "Extrusion 29269", "label": "Extrusion 29269", "shape": "dot", "size": 10, "uid": "465f51fd-561d-4051-8e4d-f0e2e3f91fd6-00007255"}, {"group": "Reference Plane", "id": "Reference Plane 9333", "label": "Reference Plane 9333", "shape": "dot", "size": 10, "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-00002475"}, {"group": "Extrusion", "id": "Extrusion 29158", "label": "Extrusion 29158", "shape": "dot", "size": 10, "uid": "465f51fd-561d-4051-8e4d-f0e2e3f91fd6-000071e6"}, {"group": "Extrusion", "id": "Extrusion 29618", "label": "Extrusion 29618", "shape": "dot", "size": 10, "uid": "ba4253bd-45fa-4bb1-9550-dbf312e6b6b7-000073b2"}, {"group": "FamilyInstance", "id": "FamilyInstance 21055", "label": "FamilyInstance 21055", "shape": "dot", "size": 10, "uid": "251d0b51-4208-43f1-8203-4af17a32aed1-0000523f"}]);
+        edges = new vis.DataSet([{"color": "black", "from": "Reference Plane 2989", "group": "ModelLine", "label": 1, "title": "ModelLine 8852", "to": "Sweep 8679", "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-00002294", "weight": 1}, {"color": "black", "from": "Sweep 8679", "group": "ModelLine", "label": 1, "title": "ModelLine 8686", "to": "Sweep 3559", "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-000021ee", "weight": 1}, {"color": "black", "from": "Sweep 8679", "group": "ModelLine", "label": 1, "title": "ModelLine 8947", "to": "Reference Plane 6421", "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-000022f3", "weight": 1}, {"color": "black", "from": "Sweep 8679", "group": "ModelLine", "label": 1, "title": "ModelLine 8815", "to": "Reference Plane 8403", "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-0000226f", "weight": 1}, {"color": "black", "from": "Sweep 8679", "group": "Alignment", "label": 1, "title": "Alignment 29342", "to": "Extrusion 29269", "uid": "465f51fd-561d-4051-8e4d-f0e2e3f91fd6-0000729e", "weight": 1}, {"color": "black", "from": "Sweep 8679", "group": "ModelLine", "label": 1, "title": "ModelLine 8779", "to": "Reference Plane 9333", "uid": "cb2bfe05-7da5-4b11-bdd5-563d54b62e35-0000224b", "weight": 1}, {"color": "black", "from": "Sweep 8679", "group": "ModelLine", "label": 1, "title": "ModelLine 29176", "to": "Extrusion 29158", "uid": "465f51fd-561d-4051-8e4d-f0e2e3f91fd6-000071f8", "weight": 1}, {"color": "black", "from": "Extrusion 29269", "group": "ModelLine", "label": 1, "title": "ModelLine 29637", "to": "Extrusion 29618", "uid": "ba4253bd-45fa-4bb1-9550-dbf312e6b6b7-000073c5", "weight": 1}, {"color": "black", "from": "Extrusion 29269", "group": "ModelLine", "label": 1, "title": "ModelLine 29272", "to": "Extrusion 29158", "uid": "465f51fd-561d-4051-8e4d-f0e2e3f91fd6-00007258", "weight": 1}, {"color": "black", "from": "FamilyInstance 21055", "group": "ModelLine", "label": 1, "title": "ModelLine 29630", "to": "Extrusion 29618", "uid": "ba4253bd-45fa-4bb1-9550-dbf312e6b6b7-000073be", "weight": 1}, {"color": "black", "from": "FamilyInstance 21055", "group": "ModelLine", "label": 1, "title": "ModelLine 29161", "to": "Extrusion 29158", "uid": "465f51fd-561d-4051-8e4d-f0e2e3f91fd6-000071e9", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

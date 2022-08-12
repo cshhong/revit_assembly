@@ -1,0 +1,120 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 900px;
+            height: 900px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": "Wall", "id": "Wall 31", "label": "Wall 31", "shape": "dot", "size": 10, "uid": "4882f332-7bfe-11d3-a7d2-00105aa73639-0000001f"}, {"group": "Sweep", "id": "Sweep 98011", "label": "Sweep 98011", "shape": "dot", "size": 10, "uid": "e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017edb"}, {"group": "Head", "id": "Head 72", "label": "Head 72", "shape": "dot", "size": 10, "uid": "4882f332-7bfe-11d3-a7d2-00105aa73639-00000048"}]);
+        edges = new vis.DataSet([{"color": "black", "from": "Wall 31", "group": "ModelLine", "label": 1, "title": "ModelLine 98255", "to": "Sweep 98011", "uid": "e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017fcf", "weight": 1}, {"color": "black", "from": "Sweep 98011", "group": "ModelLine", "label": 1, "title": "ModelLine 98018", "to": "Head 72", "uid": "e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017ee2", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{"edge_list" : [ 
+{"subedges": [["e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017fcf", "98255", "ModelLine"], ["30232f46-066f-44a8-bfc9-f934943d6219-00034566", "214374", "Alignment"]], "nodes": [["4882f332-7bfe-11d3-a7d2-00105aa73639-0000001f", "31", "Wall"], ["e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017edb", "98011", "Sweep"]]},
+{"subedges": [["e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017ff6", "98294", "ModelLine"], ["c28a015f-d93e-4372-b83e-0754394f5c1a-0003d38e", "250766", "Alignment"]], "nodes": [["4882f332-7bfe-11d3-a7d2-00105aa73639-0000001f", "31", "Wall"], ["e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017edb", "98011", "Sweep"]]},
+{"subedges": [["e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017ee2", "98018", "ModelLine"], ["e083ef9f-7d46-4c5e-8e75-769eee782fc3-00018055", "98389", "Alignment"]], "nodes": [["4882f332-7bfe-11d3-a7d2-00105aa73639-00000048", "72", "Head"], ["e083ef9f-7d46-4c5e-8e75-769eee782fc3-00017edb", "98011", "Sweep"]]}
+ ]}

@@ -1,0 +1,4 @@
+{"edge_list" : [ 
+{"subedges": [["28be0c30-6d2e-47ac-a425-8fd97f207784-00000cf7", "3319", "Alignment"]], "nodes": [["b6735d75-895e-11d3-a7e4-00105aa73639-0000002e", "46", "Center (Front/Back)"], ["28be0c30-6d2e-47ac-a425-8fd97f207784-00000cc6", "3270", "Extrusion"]]},
+{"subedges": [["28be0c30-6d2e-47ac-a425-8fd97f207784-00000cf9", "3321", "Alignment"]], "nodes": [["b6735d75-895e-11d3-a7e4-00105aa73639-00000030", "48", "Center (Left/Right)"], ["28be0c30-6d2e-47ac-a425-8fd97f207784-00000cc6", "3270", "Extrusion"]]}
+ ]}

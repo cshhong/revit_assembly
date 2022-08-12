@@ -1,0 +1,120 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 900px;
+            height: 900px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": "Left", "id": "Left 2290", "label": "Left 2290", "shape": "dot", "size": 10, "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-000008f2"}, {"group": "Sweep", "id": "Sweep 18716", "label": "Sweep 18716", "shape": "dot", "size": 10, "uid": "3bd339c7-4e59-4c67-963f-36fcfe39af68-0000491c"}, {"group": "FamilyInstance", "id": "FamilyInstance 44357", "label": "FamilyInstance 44357", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000ad45"}, {"group": "Right", "id": "Right 2291", "label": "Right 2291", "shape": "dot", "size": 10, "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-000008f3"}, {"group": "Top", "id": "Top 2295", "label": "Top 2295", "shape": "dot", "size": 10, "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-000008f7"}, {"group": "Reference Plane", "id": "Reference Plane 3071", "label": "Reference Plane 3071", "shape": "dot", "size": 10, "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-00000bff"}, {"group": "Reference Plane", "id": "Reference Plane 47522", "label": "Reference Plane 47522", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b9a2"}, {"group": "FamilyInstance", "id": "FamilyInstance 44358", "label": "FamilyInstance 44358", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000ad46"}, {"group": "Reference Plane", "id": "Reference Plane 34013", "label": "Reference Plane 34013", "shape": "dot", "size": 10, "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-000084dd"}, {"group": "Center (Left/Right)", "id": "Center (Left/Right) 2289", "label": "Center (Left/Right) 2289", "shape": "dot", "size": 10, "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-000008f1"}, {"group": "FamilyInstance", "id": "FamilyInstance 28441", "label": "FamilyInstance 28441", "shape": "dot", "size": 10, "uid": "7eb298e9-389c-402c-971e-6fabd21898d1-00006f19"}, {"group": "Reference Plane", "id": "Reference Plane 34391", "label": "Reference Plane 34391", "shape": "dot", "size": 10, "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-00008657"}, {"group": "Reference Plane", "id": "Reference Plane 34418", "label": "Reference Plane 34418", "shape": "dot", "size": 10, "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-00008672"}, {"group": "Reference Plane", "id": "Reference Plane 3082", "label": "Reference Plane 3082", "shape": "dot", "size": 10, "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-00000c0a"}, {"group": "Reference Plane", "id": "Reference Plane 47428", "label": "Reference Plane 47428", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b944"}, {"group": "FamilyInstance", "id": "FamilyInstance 23372", "label": "FamilyInstance 23372", "shape": "dot", "size": 10, "uid": "431626bd-6fed-471a-99e7-dc6d300119ba-00005b4c"}, {"group": "FamilyInstance", "id": "FamilyInstance 23402", "label": "FamilyInstance 23402", "shape": "dot", "size": 10, "uid": "431626bd-6fed-471a-99e7-dc6d300119ba-00005b6a"}, {"group": "Reference Plane", "id": "Reference Plane 44309", "label": "Reference Plane 44309", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000ad15"}, {"group": "FamilyInstance", "id": "FamilyInstance 45099", "label": "FamilyInstance 45099", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b02b"}, {"group": "FamilyInstance", "id": "FamilyInstance 45168", "label": "FamilyInstance 45168", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b070"}, {"group": "FamilyInstance", "id": "FamilyInstance 44842", "label": "FamilyInstance 44842", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000af2a"}, {"group": "FamilyInstance", "id": "FamilyInstance 45031", "label": "FamilyInstance 45031", "shape": "dot", "size": 10, "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000afe7"}, {"group": "Reference Plane", "id": "Reference Plane 22962", "label": "Reference Plane 22962", "shape": "dot", "size": 10, "uid": "431626bd-6fed-471a-99e7-dc6d300119ba-000059b2"}, {"group": "Reference Plane", "id": "Reference Plane 34089", "label": "Reference Plane 34089", "shape": "dot", "size": 10, "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-00008529"}, {"group": "Reference Plane", "id": "Reference Plane 34471", "label": "Reference Plane 34471", "shape": "dot", "size": 10, "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-000086a7"}, {"group": "Reference Plane", "id": "Reference Plane 22997", "label": "Reference Plane 22997", "shape": "dot", "size": 10, "uid": "431626bd-6fed-471a-99e7-dc6d300119ba-000059d5"}, {"group": "Reference Plane", "id": "Reference Plane 23077", "label": "Reference Plane 23077", "shape": "dot", "size": 10, "uid": "431626bd-6fed-471a-99e7-dc6d300119ba-00005a25"}, {"group": "Reference Plane", "id": "Reference Plane 34201", "label": "Reference Plane 34201", "shape": "dot", "size": 10, "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-00008599"}]);
+        edges = new vis.DataSet([{"color": "black", "from": "Left 2290", "group": "ModelLine", "label": 1, "title": "ModelLine 18748", "to": "Sweep 18716", "uid": "3bd339c7-4e59-4c67-963f-36fcfe39af68-0000493c", "weight": 1}, {"color": "black", "from": "Left 2290", "group": "Default linear style", "label": 1, "title": "Default linear style 44701", "to": "FamilyInstance 44357", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000ae9d", "weight": 1}, {"color": "black", "from": "Left 2290", "group": "Default linear style \r\nLabel : Actual Width\r\nEquation : if(Width \u003c 2\u0027, 2\u0027, (if(Width \u003e 4\u0027, 4\u0027, Width)))", "label": 1, "title": "Default linear style \r\nLabel : Actual Width\r\nEquation : if(Width \u003c 2\u0027, 2\u0027, (if(Width \u003e 4\u0027, 4\u0027, Width))) 3038", "to": "Right 2291", "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-00000bde", "weight": 1}, {"color": "black", "from": "Sweep 18716", "group": "ModelLine", "label": 1, "title": "ModelLine 18756", "to": "Right 2291", "uid": "3bd339c7-4e59-4c67-963f-36fcfe39af68-00004944", "weight": 1}, {"color": "black", "from": "Sweep 18716", "group": "ModelLine", "label": 1, "title": "ModelLine 18765", "to": "Top 2295", "uid": "3bd339c7-4e59-4c67-963f-36fcfe39af68-0000494d", "weight": 1}, {"color": "black", "from": "Sweep 18716", "group": "ModelLine", "label": 1, "title": "ModelLine 18741", "to": "Reference Plane 3071", "uid": "3bd339c7-4e59-4c67-963f-36fcfe39af68-00004935", "weight": 1}, {"color": "black", "from": "Sweep 18716", "group": "ModelLine", "label": 1, "title": "ModelLine 18795", "to": "Reference Plane 47522", "uid": "3bd339c7-4e59-4c67-963f-36fcfe39af68-0000496b", "weight": 1}, {"color": "black", "from": "Right 2291", "group": "Default linear style", "label": 1, "title": "Default linear style 44694", "to": "FamilyInstance 44358", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000ae96", "weight": 1}, {"color": "black", "from": "Top 2295", "group": "Default linear style \r\nLabel : Actual Height\r\nEquation : if(Height \u003c 2\u0027, 2\u0027, (if(Height \u003e 4\u0027, 4\u0027, Height)))", "label": 1, "title": "Default linear style \r\nLabel : Actual Height\r\nEquation : if(Height \u003c 2\u0027, 2\u0027, (if(Height \u003e 4\u0027, 4\u0027, Height))) 3074", "to": "Reference Plane 3071", "uid": "aa4b9468-aff7-4c36-9e58-8d4e9e8f1437-00000c02", "weight": 1}, {"color": "black", "from": "Reference Plane 3071", "group": "Default linear style", "label": 1, "title": "Default linear style 34027", "to": "Reference Plane 34013", "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-000084eb", "weight": 1}, {"color": "black", "from": "Center (Left/Right) 2289", "group": "Alignment", "label": 1, "title": "Alignment 28544", "to": "FamilyInstance 28441", "uid": "7eb298e9-389c-402c-971e-6fabd21898d1-00006f80", "weight": 1}, {"color": "black", "from": "Center (Left/Right) 2289", "group": "Default linear style", "label": 1, "title": "Default linear style 34433", "to": "Reference Plane 34391", "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-00008681", "weight": 1}, {"color": "black", "from": "Center (Left/Right) 2289", "group": "Default linear style", "label": 1, "title": "Default linear style 34426", "to": "Reference Plane 34418", "uid": "3babdd3b-43e0-4645-b300-9331243acdbe-0000867a", "weight": 1}, {"color": "black", "from": "FamilyInstance 28441", "group": "Alignment", "label": 1, "title": "Alignment 28542", "to": "Reference Plane 3082", "uid": "7eb298e9-389c-402c-971e-6fabd21898d1-00006f7e", "weight": 1}, {"color": "black", "from": "FamilyInstance 28441", "group": "Alignment", "label": 1, "title": "Alignment 48241", "to": "Reference Plane 47428", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000bc71", "weight": 1}, {"color": "black", "from": "Reference Plane 47428", "group": "Default linear style", "label": 1, "title": "Default linear style 66900", "to": "FamilyInstance 23372", "uid": "9b64186b-f0da-4b91-8095-151b3105233f-00010554", "weight": 1}, {"color": "black", "from": "Reference Plane 47428", "group": "Default linear style", "label": 1, "title": "Default linear style 66907", "to": "FamilyInstance 23402", "uid": "9b64186b-f0da-4b91-8095-151b3105233f-0001055b", "weight": 1}, {"color": "black", "from": "FamilyInstance 44358", "group": "Alignment", "label": 1, "title": "Alignment 44451", "to": "Reference Plane 44309", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000ada3", "weight": 1}, {"color": "black", "from": "Reference Plane 44309", "group": "Alignment", "label": 1, "title": "Alignment 45211", "to": "FamilyInstance 45099", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b09b", "weight": 1}, {"color": "black", "from": "Reference Plane 44309", "group": "Alignment", "label": 1, "title": "Alignment 45209", "to": "FamilyInstance 45168", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b099", "weight": 1}, {"color": "black", "from": "Reference Plane 44309", "group": "Alignment", "label": 1, "title": "Alignment 45081", "to": "FamilyInstance 44842", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b019", "weight": 1}, {"color": "black", "from": "Reference Plane 44309", "group": "Alignment", "label": 1, "title": "Alignment 45083", "to": "FamilyInstance 45031", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b01b", "weight": 1}, {"color": "black", "from": "Reference Plane 44309", "group": "Alignment", "label": 1, "title": "Alignment 44453", "to": "FamilyInstance 44357", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000ada5", "weight": 1}, {"color": "black", "from": "Reference Plane 22962", "group": "Alignment", "label": 1, "title": "Alignment 23483", "to": "FamilyInstance 23372", "uid": "431626bd-6fed-471a-99e7-dc6d300119ba-00005bbb", "weight": 1}, {"color": "black", "from": "Reference Plane 34089", "group": "Alignment", "label": 1, "title": "Alignment 45207", "to": "FamilyInstance 45168", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b097", "weight": 1}, {"color": "black", "from": "Reference Plane 34471", "group": "Alignment", "label": 1, "title": "Alignment 45205", "to": "FamilyInstance 45099", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b095", "weight": 1}, {"color": "black", "from": "Reference Plane 22997", "group": "Alignment", "label": 1, "title": "Alignment 45079", "to": "FamilyInstance 45031", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b017", "weight": 1}, {"color": "black", "from": "Reference Plane 23077", "group": "Alignment", "label": 1, "title": "Alignment 23481", "to": "FamilyInstance 23402", "uid": "431626bd-6fed-471a-99e7-dc6d300119ba-00005bb9", "weight": 1}, {"color": "black", "from": "Reference Plane 34201", "group": "Alignment", "label": 1, "title": "Alignment 45077", "to": "FamilyInstance 44842", "uid": "f4e8df14-07ea-4325-8273-3c25847b9877-0000b015", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

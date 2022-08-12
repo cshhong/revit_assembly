@@ -1,0 +1,120 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 900px;
+            height: 900px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": "Reference Plane", "id": "Reference Plane 2313", "label": "Reference Plane 2313", "shape": "dot", "size": 10, "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-00000909"}, {"group": "Extrusion", "id": "Extrusion 5896", "label": "Extrusion 5896", "shape": "dot", "size": 10, "uid": "a49314ad-2da5-4ea9-8ded-7f434a30b48f-00001708"}, {"group": "FamilyInstance", "id": "FamilyInstance 9435", "label": "FamilyInstance 9435", "shape": "dot", "size": 10, "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-000024db"}, {"group": "FamilyInstance", "id": "FamilyInstance 9790", "label": "FamilyInstance 9790", "shape": "dot", "size": 10, "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-0000263e"}, {"group": "Reference Plane", "id": "Reference Plane 2447", "label": "Reference Plane 2447", "shape": "dot", "size": 10, "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-0000098f"}, {"group": "Extrusion", "id": "Extrusion 5671", "label": "Extrusion 5671", "shape": "dot", "size": 10, "uid": "a49314ad-2da5-4ea9-8ded-7f434a30b48f-00001627"}, {"group": "Center (Left/Right)", "id": "Center (Left/Right) 52", "label": "Center (Left/Right) 52", "shape": "dot", "size": 10, "uid": "bd4cbae2-77fd-11d3-a7cf-00105aa73639-00000034"}, {"group": "Extrusion", "id": "Extrusion 2118", "label": "Extrusion 2118", "shape": "dot", "size": 10, "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-00000846"}, {"group": "Right", "id": "Right 54", "label": "Right 54", "shape": "dot", "size": 10, "uid": "bd4cbae2-77fd-11d3-a7cf-00105aa73639-00000036"}, {"group": "Reference Plane", "id": "Reference Plane 51", "label": "Reference Plane 51", "shape": "dot", "size": 10, "uid": "bd4cbae2-77fd-11d3-a7cf-00105aa73639-00000033"}, {"group": "Left", "id": "Left 53", "label": "Left 53", "shape": "dot", "size": 10, "uid": "bd4cbae2-77fd-11d3-a7cf-00105aa73639-00000035"}, {"group": "Top", "id": "Top 61", "label": "Top 61", "shape": "dot", "size": 10, "uid": "bd4cbae2-77fd-11d3-a7cf-00105aa73639-0000003d"}]);
+        edges = new vis.DataSet([{"color": "black", "from": "Reference Plane 2313", "group": "ModelLine", "label": 1, "title": "ModelLine 5906", "to": "Extrusion 5896", "uid": "a49314ad-2da5-4ea9-8ded-7f434a30b48f-00001712", "weight": 1}, {"color": "black", "from": "Reference Plane 2313", "group": "Alignment", "label": 1, "title": "Alignment 9610", "to": "FamilyInstance 9435", "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-0000258a", "weight": 1}, {"color": "black", "from": "Reference Plane 2313", "group": "Alignment", "label": 1, "title": "Alignment 9824", "to": "FamilyInstance 9790", "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-00002660", "weight": 1}, {"color": "black", "from": "Reference Plane 2447", "group": "ModelLine", "label": 1, "title": "ModelLine 5801", "to": "Extrusion 5671", "uid": "a49314ad-2da5-4ea9-8ded-7f434a30b48f-000016a9", "weight": 1}, {"color": "black", "from": "Center (Left/Right) 52", "group": "Alignment", "label": 1, "title": "Alignment 9775", "to": "FamilyInstance 9435", "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-0000262f", "weight": 1}, {"color": "black", "from": "Center (Left/Right) 52", "group": "ModelLine", "label": 1, "title": "ModelLine 2149", "to": "Extrusion 2118", "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-00000865", "weight": 1}, {"color": "black", "from": "Center (Left/Right) 52", "group": "Alignment", "label": 1, "title": "Alignment 9828", "to": "FamilyInstance 9790", "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-00002664", "weight": 1}, {"color": "black", "from": "FamilyInstance 9435", "group": "Alignment", "label": 1, "title": "Alignment 9612", "to": "Right 54", "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-0000258c", "weight": 1}, {"color": "black", "from": "Right 54", "group": "ModelLine", "label": 1, "title": "ModelLine 2185", "to": "Extrusion 2118", "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-00000889", "weight": 1}, {"color": "black", "from": "Reference Plane 51", "group": "ModelLine", "label": 1, "title": "ModelLine 2186", "to": "Extrusion 2118", "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-0000088a", "weight": 1}, {"color": "black", "from": "Extrusion 2118", "group": "ModelLine", "label": 1, "title": "ModelLine 2201", "to": "Left 53", "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-00000899", "weight": 1}, {"color": "black", "from": "Extrusion 2118", "group": "ModelLine", "label": 1, "title": "ModelLine 2184", "to": "Top 61", "uid": "7fd9b6c4-6d43-4993-9c0e-876bb793b5be-00000888", "weight": 1}, {"color": "black", "from": "Left 53", "group": "Alignment", "label": 1, "title": "Alignment 9826", "to": "FamilyInstance 9790", "uid": "77c51a61-140d-4b6f-b143-179d6207a78d-00002662", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

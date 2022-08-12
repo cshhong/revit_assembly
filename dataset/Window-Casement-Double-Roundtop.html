@@ -1,0 +1,120 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 900px;
+            height: 900px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": "Extrusion", "id": "Extrusion 2456", "label": "Extrusion 2456", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-00000998"}, {"group": "Extrusion", "id": "Extrusion 2466", "label": "Extrusion 2466", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-000009a2"}, {"group": "Extrusion", "id": "Extrusion 2436", "label": "Extrusion 2436", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-00000984"}, {"group": "Extrusion", "id": "Extrusion 2388", "label": "Extrusion 2388", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-00000954"}, {"group": "Extrusion", "id": "Extrusion 2399", "label": "Extrusion 2399", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-0000095f"}, {"group": "Extrusion", "id": "Extrusion 2479", "label": "Extrusion 2479", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-000009af"}, {"group": "Left", "id": "Left 1995", "label": "Left 1995", "shape": "dot", "size": 10, "uid": "f180b693-b89f-433b-a943-caaa1c8af56e-000007cb"}, {"group": "Extrusion", "id": "Extrusion 2719", "label": "Extrusion 2719", "shape": "dot", "size": 10, "uid": "56e87d65-4af4-4499-a47f-bef364fb2472-00000a9f"}, {"group": "Right", "id": "Right 2018", "label": "Right 2018", "shape": "dot", "size": 10, "uid": "f180b693-b89f-433b-a943-caaa1c8af56e-000007e2"}, {"group": "Extrusion", "id": "Extrusion 5545", "label": "Extrusion 5545", "shape": "dot", "size": 10, "uid": "03a6e914-49d7-4bb9-ba75-46d52725e903-000015a9"}, {"group": "Extrusion", "id": "Extrusion 2447", "label": "Extrusion 2447", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-0000098f"}, {"group": "Wall", "id": "Wall 31", "label": "Wall 31", "shape": "dot", "size": 10, "uid": "2ec27a14-5109-493c-9985-56093afac7e3-0000001f"}, {"group": "Extrusion", "id": "Extrusion 13583", "label": "Extrusion 13583", "shape": "dot", "size": 10, "uid": "68e182c0-21e2-4145-8926-392d11ab1c67-0000350f"}, {"group": "Extrusion", "id": "Extrusion 2410", "label": "Extrusion 2410", "shape": "dot", "size": 10, "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-0000096a"}, {"group": "Extrusion", "id": "Extrusion 6192", "label": "Extrusion 6192", "shape": "dot", "size": 10, "uid": "f2e74249-317b-4ff8-886f-5bce6c1fb75e-00001830"}]);
+        edges = new vis.DataSet([{"color": "black", "from": "Extrusion 2456", "group": "ModelLine", "label": 1, "title": "ModelLine 2470", "to": "Extrusion 2466", "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-000009a6", "weight": 1}, {"color": "black", "from": "Extrusion 2456", "group": "ModelLine", "label": 1, "title": "ModelLine 5445", "to": "Extrusion 2436", "uid": "03a6e914-49d7-4bb9-ba75-46d52725e903-00001545", "weight": 1}, {"color": "black", "from": "Extrusion 2456", "group": "Alignment", "label": 1, "title": "Alignment 7764", "to": "Extrusion 2388", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-00001e54", "weight": 1}, {"color": "black", "from": "Extrusion 2456", "group": "ModelLine", "label": 1, "title": "ModelLine 2401", "to": "Extrusion 2399", "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-00000961", "weight": 1}, {"color": "black", "from": "Extrusion 2466", "group": "ModelLine", "label": 1, "title": "ModelLine 2480", "to": "Extrusion 2479", "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-000009b0", "weight": 1}, {"color": "black", "from": "Extrusion 2466", "group": "Alignment", "label": 1, "title": "Alignment 7777", "to": "Extrusion 2388", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-00001e61", "weight": 1}, {"color": "black", "from": "Left 1995", "group": "ModelLine", "label": 1, "title": "ModelLine 2723", "to": "Extrusion 2719", "uid": "56e87d65-4af4-4499-a47f-bef364fb2472-00000aa3", "weight": 1}, {"color": "black", "from": "Extrusion 2719", "group": "ModelLine", "label": 1, "title": "ModelLine 2721", "to": "Right 2018", "uid": "56e87d65-4af4-4499-a47f-bef364fb2472-00000aa1", "weight": 1}, {"color": "black", "from": "Extrusion 2719", "group": "ModelLine", "label": 1, "title": "ModelLine 2727", "to": "Extrusion 2436", "uid": "56e87d65-4af4-4499-a47f-bef364fb2472-00000aa7", "weight": 1}, {"color": "black", "from": "Extrusion 2719", "group": "ModelLine", "label": 1, "title": "ModelLine 2392", "to": "Extrusion 2388", "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-00000958", "weight": 1}, {"color": "black", "from": "Extrusion 2436", "group": "Alignment", "label": 1, "title": "Alignment 5683", "to": "Extrusion 5545", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-00001633", "weight": 1}, {"color": "black", "from": "Extrusion 2436", "group": "ModelLine", "label": 1, "title": "ModelLine 2448", "to": "Extrusion 2447", "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-00000990", "weight": 1}, {"color": "black", "from": "Wall 31", "group": "Alignment", "label": 1, "title": "Alignment 13973", "to": "Extrusion 13583", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-00003695", "weight": 1}, {"color": "black", "from": "Wall 31", "group": "Alignment", "label": 1, "title": "Alignment 6965", "to": "Extrusion 2388", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-00001b35", "weight": 1}, {"color": "black", "from": "Extrusion 13583", "group": "Alignment", "label": 1, "title": "Alignment 13659", "to": "Extrusion 2388", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-0000355b", "weight": 1}, {"color": "black", "from": "Extrusion 2388", "group": "Alignment", "label": 1, "title": "Alignment 5946", "to": "Extrusion 5545", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-0000173a", "weight": 1}, {"color": "black", "from": "Extrusion 2399", "group": "ModelLine", "label": 1, "title": "ModelLine 2411", "to": "Extrusion 2410", "uid": "8552404e-a0d3-496c-812e-30bbfaa41f4e-0000096b", "weight": 1}, {"color": "black", "from": "Extrusion 5545", "group": "Alignment", "label": 1, "title": "Alignment 6261", "to": "Extrusion 6192", "uid": "2ec27a14-5109-493c-9985-56093afac7e3-00001875", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
