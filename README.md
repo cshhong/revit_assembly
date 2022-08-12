@@ -3,7 +3,7 @@
 Pipeline to extract geometric relationship between components of Revit model.
 
 ## Installation
-# Dependencies 
+### Dependencies 
      - networkx
      - pprint
      - pyvis
@@ -11,14 +11,14 @@ Pipeline to extract geometric relationship between components of Revit model.
      - os
      - sys
      - clr
-# Revit plugin 
+### Revit plugin 
      - RevitPython
      - RevitLookup (for debugging)
 
-# Run _revit2text.py in Revit through RevitPython plugin
+### Run _revit2text.py in Revit through RevitPython plugin
    For each component in Revit family -> Try to move in XYZ direction -> Trigger Error -> Extract relevant elements in json format
 
-# Run _text2graph.py -> create networkx graph -> visualize with PyVis
+### Run _text2graph.py -> create networkx graph -> visualize with PyVis
 
 
 ## Example dataset
