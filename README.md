@@ -51,4 +51,3 @@ ML-based systems for design data exchange on the cloud platform. The process inv
 
 Example dataset generated with this pipeline. Original Revit models are from Revit's basic library and https://www.bimobject.com/
 
-## License
