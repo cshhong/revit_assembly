@@ -58,12 +58,12 @@ Example dataset generated with this pipeline. Original Revit models are from Rev
 If you use **Revit Assembly** in your research or projects, please cite it as follows:
 
 ```
-Hong, C. S. H. (2024). Revit Assembly (Version 0.1.0) [Computer software]. https://github.com/cshhong/revit_assembly
+Hong, C. S. H. (2023). Revit Assembly (Version 0.1.0) [Computer software]. https://github.com/cshhong/revit_assembly
 ```
 
 **BibTeX:**
 ```bibtex
-@software{hong_revit_assembly_2025,
+@software{hong_revit_assembly_2023,
   author       = {Chloe S.H. Hong},
   title        = {Revit Assembly: Graph Representation of Built Compositions},
   year         = {2023},
