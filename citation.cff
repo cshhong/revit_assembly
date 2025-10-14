@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Revit Assembly: Parametric Modeling and Automation Tools for Revit"
+authors:
+  - family-names: "Hong"
+    given-names: "Chloe Soo hwa"
+    affiliation: "Carnegie Mellon University"
+repository-code: "https://github.com/cshhong/revit_assembly"
+license: "MIT"
+version: "0.1.0"
+keywords:
+  - Revit
+  - BIM
+  - Automation
+  - Parametric design
+  - Python
+type: software
+preferred-citation:
+  type: software
+  title: "Revit Assembly"
+  authors:
+    - family-names: "Hong"
+      given-names: "Chloe Soo hwa"
+  year: 2024
+  repository-code: "https://github.com/cshhong/revit_assembly"
+  version: "0.1.0"
+  url: "https://github.com/cshhong/revit_assembly"
