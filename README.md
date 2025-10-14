@@ -51,3 +51,20 @@ ML-based systems for design data exchange on the cloud platform. The process inv
 
 Example dataset generated with this pipeline. Original Revit models are from Revit's basic library and https://www.bimobject.com/
 
+## Citation
+
+[![Cite this repo](https://img.shields.io/badge/Cite%20this%20repo-CITATION.cff-blue.svg)](./CITATION.cff)
+
+If you use **Revit Assembly** in your research or projects, please cite it as follows:
+
+Hong, C. S. H. (2024). Revit Assembly (Version 0.1.0) [Computer software]. https://github.com/cshhong/revit_assembly
+
+**BibTeX:**
+```bibtex
+@software{hong_revit_assembly_2025,
+  author       = {Chloe S.H. Hong},
+  title        = {Revit Assembly: Graph Representation of Built Compositions},
+  year         = {2023},
+  version      = {0.1.0},
+  url          = {https://github.com/cshhong/revit_assembly},
+}
