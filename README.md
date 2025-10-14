@@ -57,7 +57,9 @@ Example dataset generated with this pipeline. Original Revit models are from Rev
 
 If you use **Revit Assembly** in your research or projects, please cite it as follows:
 
+```
 Hong, C. S. H. (2024). Revit Assembly (Version 0.1.0) [Computer software]. https://github.com/cshhong/revit_assembly
+```
 
 **BibTeX:**
 ```bibtex
