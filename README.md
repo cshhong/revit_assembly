@@ -1,7 +1,7 @@
 # Revit Assembly
 This is a pipeline to generate a graph representation containing geometric and component level information from 3D Revit models.
-The graph is a novel representation that contains information of a 3D model's semantic components the geometric relationship of their assembly. This pipline is used to create 3D model datasets with user-generated procedural information to support
-ML-based systems for design data exchange on the cloud platform. The process involves querying geometric data and tabular information from Revit 3D models and outputing an interactive graph representation.
+The graph is a novel representation that contains information of a 3D model's semantic components the geometric relationship of their assembly. This pipeline is used to create 3D model datasets with user-generated procedural information to support
+ML-based systems for design data exchange on the cloud platform. The process involves querying geometric data and tabular information from Revit 3D models and outputting an interactive graph representation.
 
 <p align="center">
 <img src="assets/motivation.png" alt="Describing motivation of project with window example" height="150">
